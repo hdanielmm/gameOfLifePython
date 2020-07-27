@@ -1,6 +1,7 @@
 import pandas as pd
 
-input = "[[1, 0, 0], [0, 1, 1], [1, 1, 0]]:2"
+input = "[1, 0, 0], [0, 1, 1], [1, 1, 0]:2"
+input2 = "[[1, 0, 0], [0, 1, 1], [1, 1, 0]]:2"
 
 
 def proccess_input(input):
@@ -12,21 +13,14 @@ def proccess_input(input):
 
 
 def convertStringInList(word):
-    count = 0
     matriz = []
     sublist = []
     for i in range(0, len(word)):
-        if word[i] == "[":
-            count = count + 1
-            if count == 2:
-                matriz.append(sublist)
-        elif word[i] == "]":
-            count = count - 1
+        if word[i] == "]":
+            matriz.append(sublist)
             sublist = []
         elif word[i].isnumeric():
             sublist.append(word[i])
-        elif word[i] == ":":
-            break
     return matriz
 
 
