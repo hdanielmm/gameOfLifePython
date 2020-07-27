@@ -5,27 +5,27 @@ input = "[[1, 0, 0], [0, 1, 1], [1, 1, 0]]:2"
 
 def proccess_input(input):
     params = input.split(":")
-    params[0] = convertStringInList()
+    params[0] = convertStringInList(input)
     params[1] = params[1]
 
     return board_next_step(params[0], params[1])
 
 
-def convertStringInList():
+def convertStringInList(word):
     count = 0
     matriz = []
     sublist = []
-    for i in range(0, len(input)):
-        if input[i] == "[":
+    for i in range(0, len(word)):
+        if word[i] == "[":
             count = count + 1
             if count == 2:
                 matriz.append(sublist)
-        elif input[i] == "]":
+        elif word[i] == "]":
             count = count - 1
             sublist = []
-        elif input[i].isnumeric():
-            sublist.append(input[i])
-        elif input[i] == ":":
+        elif word[i].isnumeric():
+            sublist.append(word[i])
+        elif word[i] == ":":
             break
     return matriz
 
@@ -64,7 +64,7 @@ def board_next_step(initial_board, steps):
         for i in list:
             result = result + i
 
-    return ",".join(result)
+    return ", ".join(result)
     # return nextboard
 
 
@@ -86,5 +86,6 @@ def countNeighbors(grid, x, y):
     return sum
 
 
-print(pd.DataFrame(convertStringInList()))
+print(pd.DataFrame(convertStringInList(input)))
+
 print(proccess_input(input))
